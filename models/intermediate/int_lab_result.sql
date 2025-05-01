@@ -1,6 +1,7 @@
 with lab_report as (
     select
-        id as lab_result_id
+        {{ sha_hash_512('c(lr.id||lrv.created||lvc.id') }} as lab_result_id
+      , lr.id as source_id
       , p.mrn as person_id
       , p.id as patient_id
       , null as encounter_id

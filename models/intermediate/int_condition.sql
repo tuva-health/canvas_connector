@@ -1,6 +1,6 @@
 with condition_base as (
   select
-    c.id as condition_id
+    {{ sha_hash_512('c.id||cc.id') }} as condition_id
     , p.mrn as person_id
     , p.id as patient_id
     , null as encounter_id

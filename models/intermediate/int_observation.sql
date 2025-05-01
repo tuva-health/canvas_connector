@@ -1,6 +1,6 @@
 with mapped_data as (
     select
-        o.id as observation_id
+        {{ sha_hash_512('o.id||c.id') }} as observation_id
         , p.mrn as person_id
         , p.id as patient_id
         , o.note_id as encounter_id
