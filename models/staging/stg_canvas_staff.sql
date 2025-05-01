@@ -1,0 +1,40 @@
+select
+    id
+    , dbid
+    , created
+    , modified
+    , prefix
+    , suffix
+    , first_name
+    , middle_name
+    , last_name
+    , maiden_name
+    , nickname
+    , previous_names
+    , birth_date
+    , sex_at_birth
+    , sexual_orientation_term
+    , sexual_orientation_code
+    , gender_identity_term
+    , gender_identity_code
+    , preferred_pronouns
+    , biological_race_codes
+    , biological_race_terms
+    , cultural_ethnicity_codes
+    , cultural_ethnicity_terms
+    , last_known_timezone
+    , active
+    , primary_practice_location
+    , npi_number
+    , nadean_number
+    , group_npi_number
+    , bill_through_organization
+    , tax_id
+    , tax_id_type
+    , spi_number
+    , personal_meeting_room_link
+    , state
+    , user
+    , schedule_column_ordering
+    , default_supervising_provider
+from {{ source('canvas', 'api_staff') }}

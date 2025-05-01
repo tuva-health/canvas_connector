@@ -1,0 +1,20 @@
+select
+    id
+    dbid
+    created
+    modified
+    patient
+    provider
+    note_type
+    note_type_version
+    title
+    body
+    originator
+    last_modified_by_staff
+    checksum
+    billing_note
+    related_data
+    location
+    datetime_of_service
+    place_of_service
+from {{ source('canvas', 'api_note') }}

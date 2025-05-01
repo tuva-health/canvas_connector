@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+ - name: canvas
+   database: canvas_raw
+   schema: raw_data
+   tables:
+     - name: api_billinglineitemmodifier
+     - name: api_billinglineitem
+     - name: api_conditioncoding
+     - name: api_condition
+     - name: api_laborder
+     - name: api_labreport
+     - name: api_labresult
+     - name: api_labtest
+     - name: api_labvaluecoding
+     - name: api_medication
+     - name: api_note
+     - name: api_observationcoding
+     - name: api_observation
+     - name: api_patient
+     - name: api_patientaddress
+     - name: api_patientcontactpoint
+     - name: api_practicelocation
+     - name: api_prescription
+     - name: api_staff

@@ -1,0 +1,48 @@
+name: 'connector_template'
+version: '1.0.0'
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'default'
+
+vars:
+  ## The Tuva Project vars
+  ### Uncomment the line(s) based on the type of source data.
+  #claims_enabled: true
+  #clinical_enabled: true
+  #provider_attribution_enabled: true
+
+  ## CMS HCC data mart vars
+  # Setting the payment year to year needed for the demo data
+  #cms_hcc_payment_year: 2018
+
+  ## Quality Measure data mart vars
+  ### Setting the reporting period to date needed for demo data
+  #quality_measures_period_end: "2018-12-31"
+
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+models:
+  connector_template:
+    models:
+      staging:
+        +materialized: table
+        +schema: _input_layer
+        +tags: input_layer
+      intermediate:
+        +materialized: table
+        +schema: _input_layer
+        +tags: input_layer
+      final:
+        +materialized: table
+        +schema: input_layer
+        +tags: input_layer
