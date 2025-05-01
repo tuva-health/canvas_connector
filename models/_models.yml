@@ -11,6 +11,11 @@ models:
     columns:
       - name: condition_id
         description: '{{ doc("condition_id") }}'
+        tests:
+        - not_null:
+            tags: ['tuva_dqi_sev_1', 'dqi']
+        - unique:
+            tags: ['tuva_dqi_sev_1', 'dqi']
       - name: person_id
         description: '{{ doc("person_id") }}'
       - name: patient_id
@@ -75,6 +80,11 @@ models:
     columns:
       - name: encounter_id
         description: '{{ doc("encounter_id") }}'
+        tests:
+        - not_null:
+            tags: ['tuva_dqi_sev_1', 'dqi']
+        - unique:
+            tags: ['tuva_dqi_sev_1', 'dqi']
       - name: person_id
         description: '{{ doc("person_id") }}'
       - name: patient_id
@@ -157,6 +167,11 @@ models:
     columns:
       - name: lab_result_id
         description: '{{ doc("lab_result_id") }}'
+        tests:
+        - not_null:
+            tags: ['tuva_dqi_sev_1', 'dqi']
+        - unique:
+            tags: ['tuva_dqi_sev_1', 'dqi']
       - name: person_id
         description: '{{ doc("person_id") }}'
       - name: patient_id
@@ -242,6 +257,11 @@ models:
     columns:
       - name: location_id
         description: '{{ doc("location_id") }}'
+        tests:
+        - not_null:
+            tags: ['tuva_dqi_sev_1', 'dqi']
+        - unique:
+            tags: ['tuva_dqi_sev_1', 'dqi']
       - name: npi
         description: '{{ doc("npi") }}'
         meta:
@@ -279,6 +299,11 @@ models:
     columns:
       - name: medication_id
         description: '{{ doc("medication_id") }}'
+        tests:
+        - not_null:
+            tags: ['tuva_dqi_sev_1', 'dqi']
+        - unique:
+            tags: ['tuva_dqi_sev_1', 'dqi']
       - name: person_id
         description: '{{ doc("person_id") }}'
       - name: patient_id
@@ -341,6 +366,11 @@ models:
     columns:
       - name: observation_id
         description: '{{ doc("observation_id") }}'
+        tests:
+        - not_null:
+            tags: ['tuva_dqi_sev_1', 'dqi']
+        - unique:
+            tags: ['tuva_dqi_sev_1', 'dqi']
       - name: person_id
         description: '{{ doc("person_id") }}'
       - name: patient_id
@@ -448,6 +478,11 @@ models:
     columns:
       - name: practitioner_id
         description: '{{ doc("practitioner_id") }}'
+        tests:
+        - not_null:
+            tags: ['tuva_dqi_sev_1', 'dqi']
+        - unique:
+            tags: ['tuva_dqi_sev_1', 'dqi']
       - name: npi
         description: '{{ doc("npi") }}'
         meta:
@@ -477,6 +512,11 @@ models:
     columns:
       - name: procedure_id
         description: '{{ doc("procedure_id") }}'
+        tests:
+        - not_null:
+            tags: ['tuva_dqi_sev_1', 'dqi']
+        - unique:
+            tags: ['tuva_dqi_sev_1', 'dqi']
       - name: person_id
         description: '{{ doc("person_id") }}'
       - name: patient_id
@@ -763,4 +803,3 @@ models:
             tags: ['tuva_dqi_sev_1', 'dqi']
         - unique:
             tags: ['tuva_dqi_sev_1', 'dqi']
-            
