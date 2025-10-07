@@ -1,6 +1,6 @@
 with mapped_data as (
     select
-       {{ sha_hash_512(m.id, coalesce(p.id)) }} as medication_id
+       {{ sha_hash_512(coalesce(m.id, p.id)) }} as medication_id
         , p.mrn as person_id
         , p.id as patient_id
         , null as encounter_id
