@@ -1,6 +1,6 @@
 select
     id
-    , dbid
+    -- , dbid
     , created
     , modified
     , prefix
@@ -24,7 +24,7 @@ select
     , cultural_ethnicity_terms
     , last_known_timezone
     , active
-    , primary_practice_location
+    , primary_practice_location_id
     , npi_number
     , nadean_number
     , group_npi_number
@@ -34,7 +34,7 @@ select
     , spi_number
     , personal_meeting_room_link
     , state
-    , user
+    , user_id
     , schedule_column_ordering
-    , default_supervising_provider
+    , default_supervising_provider_id
 from {{ source('canvas', 'api_staff') }}

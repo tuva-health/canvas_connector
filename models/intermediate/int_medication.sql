@@ -1,10 +1,10 @@
 with mapped_data as (
     select
-       {{ sha_hash_512(coalesce(m.id, p.id)) }} as medication_id
+        {{ sha_hash_512('m.id') }} as medication_id 
         , p.mrn as person_id
         , p.id as patient_id
         , null as encounter_id
-        , pr.created as dispensing_date
+        , pr.created as dispensing_date --multiple dispenses causing duplicates (duplicate medication_id)
         , pr.written_date as prescribing_date
         , 'ndc' as source_code_type
         , m.national_drug_code as source_code
@@ -19,7 +19,7 @@ with mapped_data as (
         , 'Canvas' as data_source
     from {{ ref('stg_canvas_medication') }} as m
     left join {{ ref('stg_canvas_patient')}} as p
-        on m.patient = p.id
+        on m.patient_id = p.id
     left join {{ ref('stg_canvas_prescription') }} as pr
         on m.id = pr.medication_id
     left join {{ ref('terminology__ndc') }} as ndc
@@ -38,11 +38,11 @@ select
     , cast(source_description as {{ dbt.type_string() }} ) as source_description
     , cast(ndc_code as {{ dbt.type_string() }} ) as ndc_code
     , cast(ndc_description as {{ dbt.type_string() }} ) as ndc_description
-    , cast(rxnorm_code as {{ dbt.type_string() }} ) as rxnorm_code
-    , cast(rxnorm_description as {{ dbt.type_string() }} ) as rxnorm_description
-    , cast(atc_code as {{ dbt.type_string() }} ) as atc_code
-    , cast(atc_description as {{ dbt.type_string() }} ) as atc_description
-    , cast(route as {{ dbt.type_string() }} ) as route
+    -- , cast(rxnorm_code as {{ dbt.type_string() }} ) as rxnorm_code
+    -- , cast(rxnorm_description as {{ dbt.type_string() }} ) as rxnorm_description
+    -- , cast(atc_code as {{ dbt.type_string() }} ) as atc_code
+    -- , cast(atc_description as {{ dbt.type_string() }} ) as atc_description
+    -- , cast(route as {{ dbt.type_string() }} ) as route
     , cast(strength as {{ dbt.type_string() }} ) as strength
     , cast(quantity as {{ dbt.type_int() }} ) as quantity
     , cast(quantity_unit as {{ dbt.type_string() }} ) as quantity_unit

@@ -1,6 +1,6 @@
 with mapped_data as (
     select
-        id as encounter_id
+        n.id as encounter_id --TODO: check if we need to bring in api_note from canvas
         , p.mrn as person_id
         , p.id as patient_id
         , note_type as encounter_type
@@ -8,18 +8,18 @@ with mapped_data as (
         , datetime_of_service as encounter_end_date
         , pl.id as facility_id
         , pl.full_name as facility_name
-        , n.provider as attending_provider_id
-        , concat(coalesce(last_name, ''), 
-            ', 'coalesce(s.first_name, '')) 
+        , n.provider_id as attending_provider_id
+        , concat(coalesce(s.last_name, ''), 
+            ', ', coalesce(s.first_name, '')) 
             as attending_provider_name
         , 'Canvas' as data_source
     from {{ ref('stg_canvas_note' )}} as n
     left join {{ ref('stg_canvas_patient') }} as p
-        on n.patient = p.id
+        on n.patient_id = p.id
     left join {{ ref('stg_canvas_practice_location') }} as pl
-        on n.location = pl.id
+        on n.location_id = pl.id
     left join {{ ref('stg_canvas_staff') }} as s
-        on n.provider = s.id
+        on n.provider_id = s.id
 )
 
     select 

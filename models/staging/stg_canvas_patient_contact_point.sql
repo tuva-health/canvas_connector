@@ -1,13 +1,13 @@
 select
       id
-    , dbid
+    -- , dbid
     , system
     , value
     , use
     , use_notes
     , rank
     , state
-    , patient
+    , patient_id
     , has_consent
     , last_verified
     , verification_token

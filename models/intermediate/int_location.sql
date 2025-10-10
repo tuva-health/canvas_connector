@@ -3,7 +3,7 @@ with location_base as (
         id as location_id
         , cast(npi_number as {{ dbt.type_string() }}) as npi
         , full_name as name
-        , organization as parent_organization
+        , organization_id as parent_organization
         , taxonomy_number as facility_type
         , 'Canvas' as data_source
     from {{ ref('stg_canvas_practice_location') }} as pl
@@ -12,7 +12,7 @@ with location_base as (
 mapped_data as (
     select
         location_id
-        , npi
+        , location_base.npi
         , name
         , parent_organization
         , facility_type
@@ -25,7 +25,7 @@ mapped_data as (
         , data_source
     from location_base
     left join {{ ref('terminology__provider') }} as p
-    on pl.npi_number = p.npi
+    on location_base.npi = p.npi
 )
 
 

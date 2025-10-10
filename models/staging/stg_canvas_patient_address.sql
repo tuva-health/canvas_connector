@@ -1,6 +1,6 @@
 select
     id
-    , dbid
+    -- , dbid
     , line1
     , line2
     , city
@@ -11,9 +11,9 @@ select
     , type
     , longitude
     , latitude
-    , start
-    , end
+    , "START"
+    , "END"
     , country
     , state
-    , patient
+    , patient_id
 from {{ source('canvas', 'api_patientaddress') }}
