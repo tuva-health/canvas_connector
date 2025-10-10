@@ -17,4 +17,4 @@ select
 	, patient_communication_method
 	, externally_exposable_id
 from {{ source('canvas', 'api_labreview') }}
-and not coalesce(entered_in_error_id is not null, false)
+WHERE not coalesce(entered_in_error_id is not null, false)
