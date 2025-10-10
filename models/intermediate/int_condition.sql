@@ -1,6 +1,6 @@
 with condition_base as (
   select
-    {{ sha_hash_512('c.id||cc.id') }} as condition_id
+    coalesce({{ sha_hash_512('c.id') }}, {{ sha_hash_512('cc.id') }}) as condition_id
     , p.mrn as person_id
     , p.id as patient_id
     , null as encounter_id
@@ -14,14 +14,14 @@ with condition_base as (
         when cc.system = 'ICD-10' then 'icd-10-cm'
         else cc.system
         end as source_code_type
-    , cc.code as source_code
+    , cc.code as source_code. -- multiple code and code systems causing duplicate condition_ids
     , cc.display as source_description
     , 'Canvas' as data_source
   from {{ ref('stg_canvas_condition') }} as c
   left join {{ ref('stg_canvas_patient') }} as p
-    on c.patient = p.id
+    on c.patient_id = p.id
   left join {{ ref('stg_canvas_condition_coding') }} as cc
-    on c.id = cc.condition
+    on c.id = cc.condition_id
 )
 
 select

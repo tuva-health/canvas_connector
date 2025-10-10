@@ -4,7 +4,7 @@ with practitioner_base as (
         , npi_number as npi
         , first_name
         , last_name
-        , practice_location as practice_location_id
+        , primary_practice_location_id
     from {{ ref('stg_canvas_staff') }}
 ),
 
@@ -25,7 +25,7 @@ mapped_data as (
         , 'Canvas' as data_source
     from practitioner_base as pb
     left join practice_location as pl
-        on pb.practice_location_id = pl.practice_location_id
+        on pb.primary_practice_location_id = pl.practice_location_id
 )
 
 select

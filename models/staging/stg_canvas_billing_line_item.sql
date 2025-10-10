@@ -1,10 +1,10 @@
 select
     id
-    , dbid
+    -- , dbid
     , created
     , modified
-    , note
-    , patient
+    , note_id
+    , patient_id
     , cpt
     , charge
     , description

@@ -1,26 +1,26 @@
 select
       id
-    , dbid
+    -- , dbid
     , created
     , modified
     , review_mode
     , junked
     , requires_signature
     , assigned_date
-    , patient
+    , patient_id
     , transmission_type
     , for_test_only
     , external_id
     , version
     , requisition_number
-    , review
+    , review_id
     , original_date
     , date_performed
     , custom_document_name
-    , originator
-    , committer
-    , entered_in_error
+    , originator_id
+    , committer_id
+    , entered_in_error_id
     , deleted
 from {{ source('canvas', 'api_labreport') }}
 where not coalesce(deleted, false)
-and not coalesce(entered_in_error, false)
+and not coalesce(entered_in_error_id is not null, false)

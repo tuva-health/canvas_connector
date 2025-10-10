@@ -1,9 +1,9 @@
 select
       id
-    , dbid
+    -- , dbid
     , created
     , modified
-    , report
+    , report_id
     , value
     , units
     , abnormal_flag

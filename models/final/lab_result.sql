@@ -1,1 +1,1 @@
-select from {{ ref('int_lab_result') }}
+select * from {{ ref('int_lab_result') }}

@@ -19,7 +19,7 @@ with patient_base as (
 
 patient_address as (
     select
-        patient as patient_id
+        patient_id
         , line1 as address
         , city
         , state
@@ -29,14 +29,14 @@ patient_address as (
     from {{ ref('stg_canvas_patient_address') }}
     where end is null
     qualify row_number() over (
-        partition by patient
-        order by start desc
+        partition by patient_id
+        order by state desc
     ) = 1
 ),
 
 patient_contact as (
     select
-        patient as patient_id
+        patient_id
         , value as phone
     from {{ ref('stg_canvas_patient_contact_point') }}
     where system = 'phone'

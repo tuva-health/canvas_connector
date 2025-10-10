@@ -1,13 +1,13 @@
 select
     id
-    , dbid
+    -- , dbid
     , created
     , modified
-    , originator
+    , originator_id
     , deleted
-    , committer
-    , entered_in_error
-    , patient
+    , committer_id
+    , entered_in_error_id
+    , patient_id
     , ontology_lab_partner
     , comment
     , requisition_number
@@ -19,8 +19,8 @@ select
     , courtesy_copy_type
     , courtesy_copy_number
     , courtesy_copy_text
-    , ordering_provider
-    , parent_order
+    , ordering_provider_id
+    , parent_order_id
     , healthgorilla_id
     , manual_processing_status
     , manual_processing_comment

@@ -1,6 +1,6 @@
 with mapped_data as (
     select
-        {{ sha_hash_512('o.id||c.id') }} as observation_id
+        coalesce({{ sha_hash_512('o.id') }}, {{ sha_hash_512('c.id') }}) as observation_id
         , p.mrn as person_id
         , p.id as patient_id
         , o.note_id as encounter_id
@@ -8,7 +8,7 @@ with mapped_data as (
         , o.effective_datetime as observation_date
         , o.category as observation_type
         , c.system as source_code_type
-        , c.code as source_code
+        , c.code as source_code -- multiple source codes causing duplicate obvservation_ids
         , c.display as source_description
         , null as normalized_code_type
         , null as normalized_code
@@ -23,9 +23,9 @@ with mapped_data as (
         , 'Canvas' as data_source
     from {{ ref('stg_canvas_observation') }} as o
     left join {{ ref('stg_canvas_patient') }} as p
-        on o.patient = p.patient
+        on o.patient_id = p.id
     left join {{ ref('stg_canvas_observation_coding') }} as c
-        on o.id = c.observation
+        on o.id = c.observation_id
 )
 
 select

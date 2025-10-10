@@ -1,6 +1,6 @@
 select
     id
-    , dbid
+    -- , dbid
     , first_name
     , last_name
     , birth_date
@@ -34,5 +34,5 @@ select
     , birth_order
     , default_location_id
     , default_provider_id
-    , user
+    , user_id
 from {{ source('canvas', 'api_patient') }}
