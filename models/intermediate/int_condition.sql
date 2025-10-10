@@ -14,7 +14,7 @@ with condition_base as (
         when cc.system = 'ICD-10' then 'icd-10-cm'
         else cc.system
         end as source_code_type
-    , cc.code as source_code. -- multiple code and code systems causing duplicate condition_ids
+    , cc.code as source_code -- multiple code and code systems causing duplicate condition_ids
     , cc.display as source_description
     , 'Canvas' as data_source
   from {{ ref('stg_canvas_condition') }} as c
