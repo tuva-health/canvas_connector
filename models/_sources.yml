@@ -12,8 +12,10 @@ sources:
      - name: api_laborder
      - name: api_labreport
      - name: api_labresult
+     - name: api_labreview
      - name: api_labtest
-     - name: api_labvaluecoding
+     - name: api_labvalue
+    #  - name: api_labvaluecoding
      - name: api_medication
      - name: api_note
      - name: api_observationcoding

@@ -1,10 +1,10 @@
 select
       id
-    , dbid
-    , patient
+    -- , dbid
+    , patient_id
     , deleted
-    , entered_in_error
-    , committer
+    , entered_in_error_id
+    , committer_id
     , status
     , start_date
     , end_date
@@ -15,4 +15,4 @@ select
     , erx_quantity
 from {{ source('canvas', 'api_medication') }}
 where not coalesce(deleted, false)
-and not coalesce(entered_in_error, false)
+and not coalesce(entered_in_error_id is not null, false)

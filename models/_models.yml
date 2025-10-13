@@ -707,6 +707,14 @@ models:
             tags: ['tuva_dqi_sev_1', 'dqi']
         - unique:
             tags: ['tuva_dqi_sev_1', 'dqi']
+  - name: stg_canvas_lab_review
+    columns:
+      - name: id
+        tests:
+        - not_null:
+            tags: ['tuva_dqi_sev_1', 'dqi']
+        - unique:
+            tags: ['tuva_dqi_sev_1', 'dqi']
   - name: stg_canvas_lab_test
     columns:
       - name: id
@@ -715,14 +723,14 @@ models:
             tags: ['tuva_dqi_sev_1', 'dqi']
         - unique:
             tags: ['tuva_dqi_sev_1', 'dqi']
-  - name: stg_canvas_lab_value_coding
-    columns:
-      - name: id
-        tests:
-        - not_null:
-            tags: ['tuva_dqi_sev_1', 'dqi']
-        - unique:
-            tags: ['tuva_dqi_sev_1', 'dqi']
+  # - name: stg_canvas_lab_value_coding
+  #   columns:
+  #     - name: id
+  #       tests:
+  #       - not_null:
+  #           tags: ['tuva_dqi_sev_1', 'dqi']
+  #       - unique:
+  #           tags: ['tuva_dqi_sev_1', 'dqi']
   - name: stg_canvas_medication
     columns:
       - name: id

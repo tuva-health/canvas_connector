@@ -1,9 +1,9 @@
 select
     id
-    , dbid
+    -- , dbid
     , created
     , modified
-    , organization
+    , organization_id
     , place_of_service_code
     , full_name
     , short_name
