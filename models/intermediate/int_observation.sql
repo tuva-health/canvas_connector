@@ -1,6 +1,6 @@
 with mapped_data as (
     select
-        coalesce({{ sha_hash_512('o.id') }}, {{ sha_hash_512('c.id') }}) as observation_id
+        {{ sha_hash_512('concat(o.id, coalesce(c.id, o.id))') }} as observation_id
         , p.mrn as person_id
         , p.id as patient_id
         , o.note_id as encounter_id

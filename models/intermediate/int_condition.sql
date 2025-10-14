@@ -1,6 +1,6 @@
 with condition_base as (
   select
-    coalesce({{ sha_hash_512('c.id') }}, {{ sha_hash_512('cc.id') }}) as condition_id
+    {{ sha_hash_512('concat(c.id, coalesce(cc.id, c.id))') }} as condition_id
     , p.mrn as person_id
     , p.id as patient_id
     , null as encounter_id
